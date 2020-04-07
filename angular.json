@@ -1,0 +1,132 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "balance-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/balance-app",
+      "sourceRoot": "projects/balance-app/src",
+      "prefix": "js",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/balance-app",
+            "index": "projects/balance-app/src/index.html",
+            "main": "projects/balance-app/src/main.ts",
+            "polyfills": "projects/balance-app/src/polyfills.ts",
+            "tsConfig": "projects/balance-app/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/balance-app/src/favicon.ico",
+              "projects/balance-app/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "projects/balance-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/balance-app/src/environments/environment.ts",
+                  "with": "projects/balance-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "balance-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "balance-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "balance-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/balance-app/src/test.ts",
+            "polyfills": "projects/balance-app/src/polyfills.ts",
+            "tsConfig": "projects/balance-app/tsconfig.spec.json",
+            "karmaConfig": "projects/balance-app/karma.conf.js",
+            "assets": [
+              "projects/balance-app/src/favicon.ico",
+              "projects/balance-app/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
+              "projects/balance-app/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/balance-app/tsconfig.app.json",
+              "projects/balance-app/tsconfig.spec.json",
+              "projects/balance-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/balance-app/e2e/protractor.conf.js",
+            "devServerTarget": "balance-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "balance-app:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "balance-app"
+}
