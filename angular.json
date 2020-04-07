@@ -22,7 +22,7 @@
             "main": "projects/balance-app/src/main.ts",
             "polyfills": "projects/balance-app/src/polyfills.ts",
             "tsConfig": "projects/balance-app/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "projects/balance-app/src/favicon.ico",
               "projects/balance-app/src/assets"
@@ -46,7 +46,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
